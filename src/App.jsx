@@ -1,37 +1,19 @@
 import './App.css'
+import Button from './components/Button';
+import NavBar from './components/NavBar/NavBar';
+import './App.css'
+import { useState } from 'react';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 function App() {
-  
-  function constadorDeVistas(){
-    return 456750
-  }
-
-  function authUser() {
-    return{
-      userName: "Bustos",
-      colorPreferido: "Verde"
-    }
-  }
-
-  const estilosDeContador = {
-    background: "white",
-    color: "blue"
-  };
-
-
   return (
-    <>
-      <h1>Hola {authUser().userName} bienvenido a la concha tuya</h1>
-      <div className="card">
-        <h2>
-          {constadorDeVistas()}
-        </h2>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className='1'>
+    <NavBar />
+    <ItemListContainer greeting={'Bienvenido'}/>
+    </div>
   )
+ 
+
 }
 
 export default App
