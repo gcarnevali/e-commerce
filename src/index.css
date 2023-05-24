@@ -31,6 +31,21 @@ nav{
   justify-content: space-between;
   justify-content:center;
   text-align: center;
+  width: 100%;
+}
+.nav-menu{
+  display: flex;
+  flex-direction: row;
+
+}
+.nav-item{
+  display: flex;
+  justify-content: space-between;
+}
+.nav-link{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 a {
   font-weight: 500;
