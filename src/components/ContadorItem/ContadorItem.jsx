@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Contador = ({stock, initial, onAdd}) => {
+const ContadorItem = ({stock, initial, onAdd}) => {
     const [cantidad, setCantidad] = useState(initial)
 
     const incrementar = () => {
@@ -22,7 +22,7 @@ const Contador = ({stock, initial, onAdd}) => {
                 <button className='Button' onClick={incrementar}>+</button>
             </div>
             <div>
-                <button className='Button' onClick={() => onAdd(cantidad)} disabled={!stock}>
+                <button className='Button'>
                     Agregar al carrito
                     </button>
             </div>
@@ -30,4 +30,4 @@ const Contador = ({stock, initial, onAdd}) => {
     )
 }
 
-export default Contador;
+export default ContadorItem;

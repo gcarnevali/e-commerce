@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import ItemList from '../ItemList/ItemList'
+import ItemList from "./ItemList"
 import productos from '../Productos'
 
 function getData() {

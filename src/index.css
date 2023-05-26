@@ -21,9 +21,31 @@ body {
   margin: 0;
   width: 100%;
   height: fit-content;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  background-color: #242424;
 
 }
 
+.item-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.item-card_image{
+justify-content: center;
+display: flex;
+flex-direction: row;
+}
+
+img{
+  height: 250px;
+  width: 200px;
+  display: flex;
+}
 nav{
   background-color: #553788;
   display: flex;
@@ -45,12 +67,13 @@ nav{
 .nav-link{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 a {
   font-weight: 500;
   color: #ffdd59;
   text-decoration: inherit;
+  text-align: center;
+  display: flex;
 }
 a:hover {
   color: #535bf2;
