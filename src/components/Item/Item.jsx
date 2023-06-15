@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import ContadorItem from "../ContadorItem/ContadorItem";
-import Button from '../Button/Button'
+import productos from "../../asyncMock";
 
 const Item = ({id, name, price, img, stock, }) => {
     return (
@@ -18,7 +16,7 @@ const Item = ({id, name, price, img, stock, }) => {
                         <p className="Info">Stock disponible: {stock}</p>
                     </section>
                     <footer className="ItemFooter">
-                        <Link to={`/producto/${id}`} className="Option"> Ver Detalle</Link>
+                        <Link to={`/item/${id}`} className="Option"> Ver Detalle</Link>
                     </footer>
                 </article>
            
