@@ -1,18 +1,18 @@
-import { useState, useEffect } from 'react';
-import { getProductos } from '../Productos';
+import { useState, useEffect, useContext } from 'react';
+import { getProductoById } from '../../asyncMock';
 import { useParams } from 'react-router-dom';
-import Item from '../Item/Item';
-import ContadorItem from '../ContadorItem/ContadorItem';
+import { cartContext } from '../../App';
+import ItemDetail from '../ItemDetail/ItemDetail';
 
 
 
 function ItemDetailContainer() {
     const [producto, setProducto] = useState(null);
-
+    const { cart } = useContext(cartContext)
     const { itemId } = useParams();
 
     useEffect(() => {
-        getProductos(itemId)
+        getProductoById(itemId)
             .then(response => {
                 setProducto(response);
             })
@@ -23,11 +23,7 @@ function ItemDetailContainer() {
 
     return (
         <div className='detalle-producto-main'>
-            <div className='detalle-producto'>
-                <h1>{producto.name}</h1>
-                <h2>$ {producto.precio}</h2>
-                <ContadorItem stock={6} />
-            </div>
+            <ItemDetail {...producto} />
         </div>
     );
 

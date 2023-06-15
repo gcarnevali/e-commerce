@@ -1,4 +1,5 @@
-import Item from '../Item/Item'
+import productos from "../../asyncMock";
+import Item from "../Item/Item";
 
 const ItemList = ({productos}) => {
     return(

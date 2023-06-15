@@ -3,32 +3,25 @@ import { useState } from "react";
 import ContadorItem from "../ContadorItem/ContadorItem";
 import Button from '../Button/Button'
 
-function DescripcionProducto({ precio, stock }) {
+const Item = ({id, name, price, img, stock, }) => {
     return (
-        <div>
-            <h4 className="item-card-precio">$ {precio} </h4>
-            <p className="item-card-stock">Stock: {stock}</p>
-            </div>
-    )
-}
-
-const Item = ({id, name, price, img, stock}) => {
-    return (
-            <Link to={`/producto/${id}`}>
-                <div className="item-card">
-                    <div className="item-card_header">
-                        <h2>{name}</h2>
-                        <p>{stock}</p>
-                    </div>
-                    <div className="item-card_image">
-                        <img src={img} alt="" />
-                    </div>
-                <DescripcionProducto price={price}/>
-                <ContadorItem stock={6} />
-                
-                <Button> Ver Detalle </Button>
-                </div>
-            </Link>
+            
+                <article className="CardItem">
+                    <header className="Header">
+                        <h2 className="ItemHeader"> {name} </h2>
+                    </header>
+                    <picture>
+                        <img src={img} alt={name} className="ItemImg" />
+                    </picture>
+                    <section>
+                        <p className="Info">Precio: ${price}</p>
+                        <p className="Info">Stock disponible: {stock}</p>
+                    </section>
+                    <footer className="ItemFooter">
+                        <Link to={`/producto/${id}`} className="Option"> Ver Detalle</Link>
+                    </footer>
+                </article>
+           
     )
 }
 
