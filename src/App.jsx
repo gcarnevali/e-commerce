@@ -9,13 +9,6 @@ import { createContext } from 'react';
 
 export const cartContext = createContext({cart: [] })
 
-
-
-
-
-
-
-
 function App() {
   const CartProvider = cartContext.Provider;
   

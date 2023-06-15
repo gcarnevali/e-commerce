@@ -56,7 +56,7 @@
     export const getProductoByCategory = (productoCategory) => {
         return new Promise ((resolve) => {
             setTimeout(() => {
-                resolve(productos.find(prod => prod.category === parseInt((productoCategory))))
+                resolve(productos.filter(prod => prod.category === ((productoCategory))))
             })
         })
         
