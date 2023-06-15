@@ -6,7 +6,8 @@ return <nav>
     <ul className="nav-menu">
     <h3><li><NavLink to='/'>SEGUI A LIZ</NavLink></li></h3>
 
-        <li className="nav-item"><NavLink className={({ isActive}) => isActive ? 'ActiveOption' : 'Option'} to={"/category/:categoryId"}>Nuestros Vinos</NavLink></li>
+        <li className="nav-item"><NavLink className={({ isActive}) => isActive ? 'ActiveOption' : 'Option'} to={"/category/:Tintos"}>Nuestros Tintos</NavLink></li>
+        <li className="nav-item"><NavLink className={({ isActive}) => isActive ? 'ActiveOption' : 'Option'} to={"/category/:Blancos"}>Nuestros Blancos</NavLink></li>
         <li className="nav-item"><NavLink className={({ isActive}) => isActive ? 'ActiveOption' : 'Option'} to={"/category/Quienes-somos"}>Quienes Somos</NavLink></li>
 
     <CartWidget />
