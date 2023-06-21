@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ContadorItem from "../ContadorItem/ContadorItem";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,8 @@ const ItemDetail = ({ id, name, img, description, price, stock}) => {
             id, name, price
         }
 
-        addItem(item, cantidad)
+        const {addItem} = useContext(CartContext) 
+         addItem(item, cantidad)
     }
     
     

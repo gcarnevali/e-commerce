@@ -13,27 +13,31 @@ const ItemListContainer = ({ }) => {
   const { categoryId } = useParams();
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
 
     const collectionRef = categoryId
-      ? query(collection(db, 'productos'), where('category', '==', categoryId))
-      : collection(db, 'productos')
+        ? query(
+              collection(db, "items"),
+              where("category", "==", categoryId)
+          )
+        : collection(db, "items");
 
     getDocs(collectionRef)
-      .then(response => {
-        const productsAdapted = response.docs.map(doc => {
-          const data = doc.data()
-          return { id: doc.id, ...data }
+        .then((response) => {
+            const productsAdapted = response.docs.map((doc) => {
+                const data = doc.data();
+                return { id: doc.id, ...data };
+            });
+            setProductos(productsAdapted);
         })
-        setProductos(productsAdapted)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  })
+        .catch((error) => {
+            console.log(error);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+}, [categoryId]);
+
 
   return <ItemList loading={loading} productos={productos} />
 
