@@ -19,10 +19,11 @@ const ContadorItem = ({stock, initial, onAdd}) => {
         <div className='Contador'>
             <div className='Controles'>
                 <button className='Button' onClick={quitar}>-</button>
+                <h4 className='Number'>{cantidad}</h4>
                 <button className='Button' onClick={incrementar}>+</button>
             </div>
             <div>
-                <button className='Button'>
+                <button className='Button' onClick={() => onAdd(cantidad)} disabled={!stock}>
                     Agregar al carrito
                     </button>
             </div>
