@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom'
-;
+import { useParams } from 'react-router-dom';
+
 import ItemDetail from '../ItemDetail/ItemDetail';
 
 import { getDoc, doc } from 'firebase/firestore';
@@ -32,8 +32,6 @@ function ItemDetailContainer() {
         })
 
     }, [itemId])
-
-
 
     return (
         <div className='detalle-producto-main'>
