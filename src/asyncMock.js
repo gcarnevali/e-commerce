@@ -7,7 +7,7 @@
     price: 2300,
     img:'/src/assets/aguijon.jpeg',
     stock: 5,
-    descripcion: "Malbec joven Finca La Liz 2020"
+    descripcion: "Malbec 2020"
     },
     {
     id: 2,

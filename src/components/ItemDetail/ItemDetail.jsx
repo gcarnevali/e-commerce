@@ -6,15 +6,13 @@ import { CartContext } from "../../context/CartContext";
 
 const ItemDetail = ({ id, name, img, description, price, stock}) => {
     const [cantidadAgregada, setCantidadAgregada] = useState(0)
-
+    const {addItem} = useContext(CartContext) 
     const handleOnAdd = (cantidad) => {
         setCantidadAgregada(cantidad)
 
         const item = {
             id, name, price
         }
-
-        const {addItem} = useContext(CartContext) 
          addItem(item, cantidad)
     }
     
