@@ -1,21 +1,21 @@
 import { useState } from 'react'
 
-const ContadorItem = ({stock, initial, onAdd}) => {
+const ContadorItem = ({ stock, initial, onAdd }) => {
     const [cantidad, setCantidad] = useState(initial)
 
     const incrementar = () => {
-        if(cantidad < stock)
-        setCantidad(cantidad +1)
+        if (cantidad < stock)
+            setCantidad(cantidad + 1)
     }
 
 
     const quitar = () => {
-        if(cantidad > 1) {
-            setCantidad(cantidad -1)
+        if (cantidad > 1) {
+            setCantidad(cantidad - 1)
         }
     }
 
-    return(
+    return (
         <div className='Contador'>
             <div className='Controles'>
                 <button className='Button' onClick={quitar}>-</button>
@@ -25,7 +25,7 @@ const ContadorItem = ({stock, initial, onAdd}) => {
             <div>
                 <button className='Button' onClick={() => onAdd(cantidad)} disabled={!stock}>
                     Agregar al carrito
-                    </button>
+                </button>
             </div>
         </div>
     )

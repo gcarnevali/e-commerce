@@ -8,7 +8,7 @@ const CartItem = ({ name, cantidad, price, onClearItem }) => {
       <h3>{name}</h3>
       <p>Cantidad: {cantidad}</p>
       <p>Precio unitario: ${price}</p>
-      <p>Total: ${price*cantidad}</p>
+      <p>Total: ${price * cantidad}</p>
       <button onClick={onClearItem}>Clear</button>
     </div>
   );

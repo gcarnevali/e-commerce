@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { db } from "../services/firebaseConfig";
-import { getDocs, query, where, Timestamp, writeBatch, documentId, collection, addDoc} from "firebase/firestore";
+import { getDocs, query, where, Timestamp, writeBatch, documentId, collection, addDoc } from "firebase/firestore";
 import { CartContext } from "../../context/CartContext";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
+import { useEffect } from "react";
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false)
@@ -12,16 +13,21 @@ const Checkout = () => {
 
     const createOrder = async ({ nombre, telefono, email }) => {
         setLoading(true)
+            useEffect(() => {
+                try {
+                    const objOrder = {
+                        buyer: {
+                            nombre, telefono, email
+                        }, items: cart.map(item => ({
+                        id: item.id,
+                        name: item.name,
+                        price: Number(item.price),
+                        cantidad: item.cantidad,
+                    })),
+                    total: total,
+                    date: Timestamp.fromDate(new Date())
+            };
 
-        try {
-            const objOrder = {
-                buyer: {
-                    nombre, telefono, email
-                },
-                items: cart,
-                total: total,
-                date: Timestamp.fromDate(new Date())
-            }
 
             const batch = writeBatch(db)
 
@@ -33,7 +39,7 @@ const Checkout = () => {
 
             const productsAddedFromFireStore = await getDocs(query(productsRef, where(documentId(), 'in', ids)))
 
-            const { docs } = productsAddedFromFireStore
+            const { docs } = productsAddedFromFireStore;
 
             docs.forEach(doc => {
                 const dataDoc = doc.data()
@@ -66,7 +72,7 @@ const Checkout = () => {
         } finally {
             setLoading(false)
         }
-    }
+    })
 
     if (loading) {
         return <h1>Cargando...</h1>;
@@ -82,5 +88,5 @@ const Checkout = () => {
             <CheckoutForm onConfirm={createOrder} />
         </div>
     )
-}
+}}
 export default Checkout;

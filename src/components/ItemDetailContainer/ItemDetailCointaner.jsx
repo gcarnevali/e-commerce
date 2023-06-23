@@ -10,7 +10,7 @@ import { db } from '../services/firebaseConfig';
 function ItemDetailContainer() {
     const [producto, setProducto] = useState(null);
     const [loading, setLoading] = useState(null);
-    
+
     const { itemId } = useParams();
 
     useEffect(() => {
@@ -18,18 +18,18 @@ function ItemDetailContainer() {
 
         const docRef = doc(db, 'items', itemId)
 
-        getDoc(docRef) 
-        .then(response => {
-            const data = response.data()
-            const productAdapted = { id: response.id, ...data}
-            setProducto(productAdapted)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-        .finally(() => {
-            setLoading(false);
-        })
+        getDoc(docRef)
+            .then(response => {
+                const data = response.data()
+                const productAdapted = { id: response.id, ...data }
+                setProducto(productAdapted)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .finally(() => {
+                setLoading(false);
+            })
 
     }, [itemId])
 
