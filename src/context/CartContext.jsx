@@ -32,11 +32,11 @@ export const CartProvider = ({ children }) => {
 
     const total = () => {
         const precioTotal = cart.reduce(
-            (total, item) => total + item.precio * item.cantidad,
+            (total, item) => total + item.price * item.cantidad,
             0
         );
 
-        return parseInt(precioTotal)
+        return precioTotal
     }
 
     return (
