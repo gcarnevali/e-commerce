@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 const CheckoutForm = ({ onConfirm }) => {
-    const [nombre, setNombre] = useState("");
-    const [telefono, setTelefono] = useState("")
+    const [user, setUser] = useState("");
+    const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
 
     const handleConfirm = (event) => {
         event.preventDefault();
 
         const userData = {
-            nombre, telefono, email
+            user, phone, email
         }
 
         onConfirm(userData)
@@ -22,16 +22,16 @@ const CheckoutForm = ({ onConfirm }) => {
                     Nombre
                     <input className="Input"
                         type="text"
-                        value={nombre}
-                        onChange={({ target }) => setNombre(target.value)}
+                        value={user}
+                        onChange={({ target }) => setUser(target.value)}
                     />
                 </label>
                 <label className="Label">
                     Telefono
                     <input className="Input"
                         type="text"
-                        value={telefono}
-                        onChange={({ target }) => setTelefono(target.value)}
+                        value={phone}
+                        onChange={({ target }) => setPhone(target.value)}
                     />
                 </label>
                 <label className="Label">
