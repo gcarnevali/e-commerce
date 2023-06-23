@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { db } from "../services/firebaseConfig";
-import { getDocs, query, where, Timestamp, writeBatch, documentId, } from "firebase/firestore";
+import { getDocs, query, where, Timestamp, writeBatch, documentId, collection, addDoc} from "firebase/firestore";
 import { CartContext } from "../../context/CartContext";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
@@ -10,8 +10,8 @@ const Checkout = () => {
 
     const { cart, total, clearCart } = useContext(CartContext)
 
-    const createOrder = async ({nombre, telefono, email}) => {
-        setLoading(true) 
+    const createOrder = async ({ nombre, telefono, email }) => {
+        setLoading(true)
 
         try {
             const objOrder = {
@@ -29,7 +29,9 @@ const Checkout = () => {
 
             const ids = cart.map(prod => prod.id)
 
-            const productsAddedFromFireStore = await getDocs(query(productsRef, where(documentId(), 'in')))
+            const productsRef = collection(db, "items")
+
+            const productsAddedFromFireStore = await getDocs(query(productsRef, where(documentId(), 'in', ids)))
 
             const { docs } = productsAddedFromFireStore
 
@@ -40,14 +42,14 @@ const Checkout = () => {
                 const productAddedToCart = cart.find(prod => prod.id === doc.id)
                 const prodQuantity = productAddedToCart?.cantidad
 
-                if(stockDb >= prodQuantity) {
-                    batch.update(doc.ref, {stock: stockDb - prodQuantity})
+                if (stockDb >= prodQuantity) {
+                    batch.update(doc.ref, { stock: stockDb - prodQuantity })
                 } else {
-                    outOfStock.push({ id: doc.id, ...dataDoc})
+                    outOfStock.push({ id: doc.id, ...dataDoc })
                 }
             })
 
-            if(outOfStock.length === 0) {
+            if (outOfStock.length === 0) {
                 await batch.commit()
 
                 const orderRef = collection(db, 'orders')
@@ -64,21 +66,21 @@ const Checkout = () => {
         } finally {
             setLoading(false)
         }
-    } 
+    }
 
-    if(loading) { 
+    if (loading) {
         return <h1>Cargando...</h1>;
     }
 
-    if(orderId) {
+    if (orderId) {
         return <h1>El id de su orden es: {orderId}</h1>
     }
 
     return (
         <div>
             <h1>Checkout</h1>
-            <CheckoutForm onConfirm={createOrder}/>
+            <CheckoutForm onConfirm={createOrder} />
         </div>
     )
-} 
+}
 export default Checkout;
