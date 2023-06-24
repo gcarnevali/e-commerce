@@ -1,0 +1,4 @@
+¡Hola! Este es el MD de mi proyecto, un breve resumen de las implementaciones que tiene este e-commerce.
+Primero, es un e-commerce que tiene las librerías react-router-dom, Firebase, useState, useEffect, Context, y Firebase. 
+
+La metodología del proyecto es sencilla: catálogo con stock, imagen y precio del producto. De ahí nos lleva a un detalle para ver el producto que seleccionamos, junto con su descripción. Y por supuesto un ItemCount para añadir productos al carrito. Luego tenemos un brief del cart para saber cuales productos estamos llevando, una vez corroborado ese paso, procedemos a la generación de orden de compra. Es un form con nombre, telefono y mail; una vez completado, la app se conecta a Firebase para sustraer las cantidades respectivas de la compra, y a su vez para generar una orden con ID que se le muestra al comprador.

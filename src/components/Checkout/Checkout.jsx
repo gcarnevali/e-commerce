@@ -6,80 +6,90 @@ import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
 const CheckOut = () => {
     const [loading, setLoading] = useState(false);
-    const [orderId, setOrderId] = useState('')
+    const [orderId, setOrderId] = useState("");
 
-    const {cart, total, clearCart} = useContext(CartContext)
+    const { cart, total, clearCart } = useContext(CartContext);
 
-    const createOrder = async ({name, phone, email}) => {
-        setLoading(true)
+    const createOrder = async ({ user, phone, email }) => {
+        console.log("🚀 ~ file: Checkout.jsx:23 ~ createOrder ~ name:", user);
+        setLoading(true);
 
-        try{
+        try {
             const objOrder = {
-                comprador: {name, phone, email},
+                comprador: { user, phone, email },
                 items: cart,
                 total: total(),
-                date: Timestamp.fromDate(new Date())
-            }
+                date: Timestamp.fromDate(new Date()),
+            };
 
-            const batch = writeBatch(db)
+            const batch = writeBatch(db);
 
-            const outOfStock = []
+            const outOfStock = [];
 
-            const ids = cart.map(prod => prod.id)
+            const ids = cart.map((prod) => prod.id);
 
-            const prodRef = collection(db, 'items')
+            const prodRef = collection(db, "items");
 
-            const productsAddedFromFirestore = await getDocs(query(prodRef, where(documentId(),'in',ids)))
+            const productsAddedFromFirestore = await getDocs(
+                query(prodRef, where(documentId(), "in", ids))
+            );
 
-            const {docs} = productsAddedFromFirestore
+            const { docs } = productsAddedFromFirestore;
 
-            docs.forEach(doc => {
-                const dataDoc = doc.data()
-                const stockDb = dataDoc.stockDb
+            docs.forEach((doc) => {
+                const dataDoc = doc.data();
+                const stockDb = dataDoc.stockDb;
 
-                const productsAddedToCart = cart.find(prod => prod.id === doc.id)
-                const productsCantidad = productsAddedToCart?.cantidad
+                const productsAddedToCart = cart.find(
+                    (prod) => prod.id === doc.id
+                );
+                const productsCantidad = productsAddedToCart?.cantidad;
 
                 if (stockDb >= productsCantidad) {
-                    batch.update(doc.ref,{stock:stockDb- productsCantidad})
+                    batch.update(doc.ref, {
+                        stock: stockDb - productsCantidad,
+                    });
                 } else {
-                    outOfStock.push({id:doc.id, ...dataDoc})
+                    outOfStock.push({ id: doc.id, ...dataDoc });
                 }
-            })
+            });
 
             if (outOfStock.length !== 0) {
-                await batch.commit()
+                await batch.commit();
 
-                const orderRef = collection(db,'orders')
+                const orderRef = collection(db, "orders");
 
-                const orderAdded = await addDoc(orderRef, objOrder)
+                const orderAdded = await addDoc(orderRef, objOrder);
 
-                setOrderId(orderAdded.id)
-                clearCart()
-            } else{
-                console.error ('Disculpa, nos hemos quedado sin stock de algunos productos.')
+                setOrderId(orderAdded.id);
+                clearCart();
+            } else {
+                console.error(
+                    "Disculpa, nos hemos quedado sin stock de algunos productos."
+                );
             }
-        } catch (error){
-            console.log(error)
+        } catch (error) {
+            console.log(error);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
     if (loading) {
-        return 
-        <h1>Su orden esta siendo generada, espere un momento.</h1>
+        return;
+        <h1>Su orden esta siendo generada, espere un momento.</h1>;
     }
     if (orderId) {
-        return <h1>El id de su orden es: {orderId}</h1>
+        return <h1 className="createOrder" >El id de su orden es: {orderId}</h1>;
+
     }
 
     return (
         <div>
             <h2>Checkout</h2>
-            <CheckoutForm onConfirm={createOrder}/>
+            <CheckoutForm onConfirm={createOrder} />
         </div>
-    )
-}
+    );
+};
 
-export default CheckOut;
+export default CheckOut;

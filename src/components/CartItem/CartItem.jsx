@@ -1,15 +1,14 @@
 import React from 'react';
-import { CartContext } from '../../context/CartContext';
 
-const CartItem = ({ name, cantidad, price, onClearItem }) => {
+
+const CartItem = ({ name, cantidad, price, onClearItem, img }) => {
 
   return (
-    <div>
+    <div className='ResumenCart'>
       <h3>{name}</h3>
       <p>Cantidad: {cantidad}</p>
       <p>Precio unitario: ${price}</p>
-      <p>Total: ${price * cantidad}</p>
-      <button onClick={onClearItem}>Clear</button>
+      <p>Subtotal: ${price * cantidad}</p>
     </div>
   );
 };

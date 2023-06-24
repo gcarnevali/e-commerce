@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
   width: 100%;
-  
+
 
   color-scheme: light dark;
   color: #ffdd59(255, 255, 255, 0.87);
@@ -14,60 +14,72 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  
+
 }
 
 body {
   margin: 0;
   width: 100%;
   height: fit-content;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #242424;
 
 }
 
-.item-card{
+.item-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
 }
 
-.item-card_image{
-justify-content: center;
-display: flex;
-flex-direction: row;
+.item-card_image {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
 }
 
-img{
+img {
   height: 250px;
   width: 200px;
   display: flex;
 }
-nav{
+
+picture {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
   background-color: #553788;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  justify-content:center;
+  justify-content: center;
   text-align: center;
   width: 100%;
-}
-.nav-menu{
-  display: flex;
-  flex-direction: row;
 
 }
-.nav-item{
+
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item {
   display: flex;
   justify-content: space-between;
 }
-.nav-link{
+
+.nav-link {
   display: flex;
   flex-direction: row;
 }
+
 a {
   font-weight: 500;
   color: #ffdd59;
@@ -75,6 +87,8 @@ a {
   text-align: center;
   display: flex;
 }
+
+
 a:hover {
   color: #535bf2;
 }
@@ -84,16 +98,110 @@ h1 {
   line-height: 1.1;
   display: flex;
   justify-content: center;
-}
-h3 {
-padding-top: 20px;
-padding-bottom: 20px;
-padding-left: 20px;
-padding-right: 10px;
-color: #ffdd59;
+  color: #ffdd59;
 }
 
-.botones{
+h2 {
+  color: #ffdd59;
+  display: flex;
+  justify-content: center;
+}
+
+.Info {
+  display: flex;
+  justify-content: center;
+}
+
+.Option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #553788;
+  padding: 10px;
+  margin: 15px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+
+}
+
+.Controles {
+  display: flex;
+  justify-content: space-between;
+  height: min-content;
+  width: 100%;
+}
+
+Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.createOrder {
+  display: flex;
+  color: #ffdd59;
+}
+
+.CardItem {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+}
+
+.Form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+.Label {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  display: flex;
+  margin: 10px;
+}
+
+.ResumenCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.GoToCheckout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 10px;
+  color: #ffdd59;
+}
+
+h4 {
+  display: flex;
+  flex-direction: row;
+}
+
+.botones {
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 20px;
@@ -101,13 +209,13 @@ color: #ffdd59;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
+
 }
 
 button {
-  border-radius: 8px;
-  border: 10px;
-  padding: 5px 5px;
+  border-radius: 5px;
+  border: 5px;
+  padding: 5;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -117,31 +225,47 @@ button {
 
   background-color: #553788;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}*/
-
-svg {
-height: fit-content;
-display: flex;
-width: 100%;
-max-height: 25px;
-padding-top: 30px;
-padding-right: 10px;
-padding-left: 0px;
 }
+
+.CartWidget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 50px;
+  color: #ffffff;
+
+}
+
+.carrito {
+  display: flex;
+  padding-left: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 40px;
+  color: #ffffff;
+  width: fit-content;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
